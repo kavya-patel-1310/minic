@@ -1,0 +1,43 @@
+// String processing: reverse, palindromes, character counts, formatting.
+fn reverse(s) {
+    let out = "";
+    for (let i = len(s) - 1; i >= 0; i -= 1) out += s[i];
+    return out;
+}
+
+fn isPalindrome(s) { return s == reverse(s); }
+
+fn count(s, ch) {
+    let n = 0;
+    for (let i = 0; i < len(s); i += 1) if (s[i] == ch) n += 1;
+    return n;
+}
+
+fn join(items, sep) {
+    let out = "";
+    for (let i = 0; i < len(items); i += 1) {
+        if (i > 0) out += sep;
+        out += str(items[i]);
+    }
+    return out;
+}
+
+fn padLeft(s, width) {
+    s = str(s);
+    if (len(s) >= width) return s;
+    return " " * (width - len(s)) + s;
+}
+
+print reverse("compiler");
+let words = ["level", "racecar", "minilang", "noon", "abcba", "hello"];
+for (let i = 0; i < len(words); i += 1) {
+    let verdict = "no";
+    if (isPalindrome(words[i])) verdict = "yes";
+    print padLeft(words[i], 10), " palindrome:", verdict;
+}
+
+let text = "the quick brown fox jumps over the lazy dog";
+print "'o' appears", count(text, "o"), "times in:", text;
+print "joined:", join([1, 2, 3, "four", [5, 6]], " | ");
+print "-" * 30;
+print "int(\" 42 \") + 1 =", int(" 42 ") + 1, " type:", type(int("7")), type("7"), type([]), type(nil);

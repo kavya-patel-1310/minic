@@ -1,0 +1,11 @@
+relipmoc
+     level  palindrome: yes
+   racecar  palindrome: yes
+  minilang  palindrome: no
+      noon  palindrome: yes
+     abcba  palindrome: yes
+     hello  palindrome: no
+'o' appears 4 times in: the quick brown fox jumps over the lazy dog
+joined: 1 | 2 | 3 | four | [5, 6]
+------------------------------
+int(" 42 ") + 1 = 43  type: int string array nil

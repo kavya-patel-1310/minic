@@ -1,0 +1,10 @@
+// Array heavy (VM only): Sieve of Eratosthenes up to 5 million.
+let n = 5000000;
+let composite = array(n + 1, false);
+let count = 0;
+for (let i = 2; i <= n; i += 1) {
+    if (composite[i]) continue;
+    count += 1;
+    for (let j = i * i; j <= n; j += i) composite[j] = true;
+}
+print count;

@@ -1,0 +1,39 @@
+// A stack-based calculator for reverse Polish notation, built on arrays and strings.
+fn tokenize(s) {
+    let tokens = [];
+    let current = "";
+    for (let i = 0; i < len(s); i += 1) {
+        let ch = s[i];
+        if (ch == " ") {
+            if (current != "") { push(tokens, current); current = ""; }
+        } else {
+            current += ch;
+        }
+    }
+    if (current != "") push(tokens, current);
+    return tokens;
+}
+
+fn evalRPN(expr) {
+    let stack = [];
+    let tokens = tokenize(expr);
+    for (let i = 0; i < len(tokens); i += 1) {
+        let t = tokens[i];
+        if (t == "+" || t == "-" || t == "*" || t == "/") {
+            assert(len(stack) >= 2, "not enough operands for " + t);
+            let b = pop(stack);
+            let a = pop(stack);
+            if (t == "+") push(stack, a + b);
+            else if (t == "-") push(stack, a - b);
+            else if (t == "*") push(stack, a * b);
+            else push(stack, a / b);
+        } else {
+            push(stack, int(t));
+        }
+    }
+    assert(len(stack) == 1, "malformed expression");
+    return stack[0];
+}
+
+let exprs = ["3 4 +", "5 1 2 + 4 * + 3 -", "2 3 4 * 5 6 * + *", "100 7 / 7 *"];
+for (let i = 0; i < len(exprs); i += 1) print exprs[i], "=", evalRPN(exprs[i]);

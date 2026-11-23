@@ -1,0 +1,3 @@
+// expect: 1: undefined variable 'count'
+let total = 0;
+print count;

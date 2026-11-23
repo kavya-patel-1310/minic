@@ -1,0 +1,62 @@
+// Quicksort and insertion sort on arrays, plus binary search.
+fn swap(a, i, j) {
+    let t = a[i];
+    a[i] = a[j];
+    a[j] = t;
+}
+
+fn partition(a, lo, hi) {
+    let pivot = a[hi];
+    let i = lo;
+    for (let j = lo; j < hi; j += 1) {
+        if (a[j] < pivot) { swap(a, i, j); i += 1; }
+    }
+    swap(a, i, hi);
+    return i;
+}
+
+fn quicksort(a, lo, hi) {
+    if (lo >= hi) return a;
+    let p = partition(a, lo, hi);
+    quicksort(a, lo, p - 1);
+    quicksort(a, p + 1, hi);
+    return a;
+}
+
+fn insertionSort(a) {
+    for (let i = 1; i < len(a); i += 1) {
+        let key = a[i];
+        let j = i - 1;
+        while (j >= 0 && a[j] > key) {
+            a[j + 1] = a[j];
+            j -= 1;
+        }
+        a[j + 1] = key;
+    }
+    return a;
+}
+
+fn binarySearch(a, target) {
+    let lo = 0;
+    let hi = len(a) - 1;
+    while (lo <= hi) {
+        let mid = (lo + hi) / 2;
+        if (a[mid] == target) return mid;
+        if (a[mid] < target) lo = mid + 1; else hi = mid - 1;
+    }
+    return -1;
+}
+
+// Deterministic pseudo-random numbers (linear congruential generator).
+let seed = 42;
+fn rand(n) {
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    return seed % n;
+}
+
+let nums = [];
+for (let i = 0; i < 20; i += 1) push(nums, rand(100));
+print "input:    ", nums;
+print "quicksort:", quicksort(nums, 0, len(nums) - 1);
+print "index of", nums[7], "is", binarySearch(nums, nums[7]);
+print "words:    ", insertionSort(["pear", "apple", "fig", "banana", "cherry"]);

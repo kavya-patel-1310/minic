@@ -1,0 +1,4 @@
+// expect: 2: assertion failed: balance must stay positive
+let balance = 10;
+balance -= 25;
+assert(balance >= 0, "balance must stay positive");

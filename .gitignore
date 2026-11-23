@@ -1,0 +1,11 @@
+/build/
+/build-*/
+/minic
+*.o
+*.d
+*.s
+!/docs/*.s
+compile_commands.json
+.vscode/
+.idea/
+.DS_Store

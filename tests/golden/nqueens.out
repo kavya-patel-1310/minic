@@ -1,0 +1,36 @@
+. Q . . 
+. . . Q 
+Q . . . 
+. . Q . 
+4 queens: 2 solutions
+Q . . . . 
+. . Q . . 
+. . . . Q 
+. Q . . . 
+. . . Q . 
+5 queens: 10 solutions
+. Q . . . . 
+. . . Q . . 
+. . . . . Q 
+Q . . . . . 
+. . Q . . . 
+. . . . Q . 
+6 queens: 4 solutions
+Q . . . . . . 
+. . Q . . . . 
+. . . . Q . . 
+. . . . . . Q 
+. Q . . . . . 
+. . . Q . . . 
+. . . . . Q . 
+7 queens: 40 solutions
+first solution for n = 8:
+Q . . . . . . . 
+. . . . Q . . . 
+. . . . . . . Q 
+. . . . . Q . . 
+. . Q . . . . . 
+. . . . . . Q . 
+. Q . . . . . . 
+. . . Q . . . . 
+8 queens: 92 solutions

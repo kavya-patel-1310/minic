@@ -1,0 +1,10 @@
+//! native
+// Arithmetic and branch heavy: nested loops, modulo, comparisons.
+let total = 0;
+for (let i = 0; i < 3000; i += 1) {
+    for (let j = 0; j < 3000; j += 1) {
+        if ((i * j) % 7 == 3) total += i - j;
+        else total += 1;
+    }
+}
+print total;

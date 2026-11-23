@@ -1,0 +1,4 @@
+//! native
+// The classic.
+print "Hello, world!";
+print "MiniLang compiles to bytecode and to native x86-64.";

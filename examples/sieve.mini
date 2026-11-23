@@ -1,0 +1,20 @@
+// Sieve of Eratosthenes with arrays.
+fn sieve(limit) {
+    let isPrime = array(limit + 1, true);
+    isPrime[0] = false;
+    isPrime[1] = false;
+    for (let i = 2; i * i <= limit; i += 1) {
+        if (!isPrime[i]) continue;
+        for (let j = i * i; j <= limit; j += i) isPrime[j] = false;
+    }
+    let primes = [];
+    for (let i = 2; i <= limit; i += 1) {
+        if (isPrime[i]) push(primes, i);
+    }
+    return primes;
+}
+
+let primes = sieve(100);
+print "primes up to 100:", primes;
+print "count:", len(primes), " largest:", primes[-1];
+print "primes up to 100000:", len(sieve(100000));

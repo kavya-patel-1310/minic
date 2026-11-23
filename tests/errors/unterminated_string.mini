@@ -1,0 +1,2 @@
+// expect: 1: unterminated string literal
+print "oops;

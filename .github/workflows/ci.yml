@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    name: ${{ matrix.compiler }} / ${{ matrix.build }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [g++, clang++]
+        build: [make, cmake]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build and test (make)
+        if: matrix.build == 'make'
+        run: make -j"$(nproc)" CXX=${{ matrix.compiler }} && make test CXX=${{ matrix.compiler }}
+
+      - name: Build and test (cmake)
+        if: matrix.build == 'cmake'
+        run: |
+          cmake -S . -B build-cmake -DCMAKE_CXX_COMPILER=${{ matrix.compiler }}
+          cmake --build build-cmake -j"$(nproc)"
+          ctest --test-dir build-cmake --output-on-failure
+
+  sanitizers:
+    name: ASan + UBSan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and test with sanitizers
+        run: make sanitize
+
+  benchmarks:
+    name: Benchmarks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: make -j"$(nproc)" && ./benchmarks/run.sh

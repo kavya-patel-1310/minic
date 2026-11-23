@@ -1,0 +1,2 @@
+// expect: 1: is a built-in function
+fn len(x) { return 0; }
